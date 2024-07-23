@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-</head>
-<body>
-<h1>Main page</h1>
-</body>
-</html>
+{%extends "base.html"%}
+
+{%block content%}
+<div class="container mt-5 ">
+    <h2>Posts</h2>
+    <div class="row">
+
+        {%for post in posts%}
+       <div class="col-md-4 mb-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.body |truncatechars:"100"}}</p>
+                <div class="p-3">
+                <a href="{% url 'detail' post.id%}" class="btn btn-primary">
+                    More
+                </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{post.created_at}}</small>
+            </div>
+        </div>
+       </div>
+        {%endfor%}
+    </div>
+
+</div>
+
+{%endblock content%}
